@@ -37,12 +37,12 @@ const EducationalPrograms = () => {
   ];
 
   return (
-    <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#171719] py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            Our Educational Programs
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            Our Educational <span className='text-[#194BFD]'>Programs</span>
           </h2>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
             Comprehensive programs designed to address educational gaps and 
@@ -55,7 +55,7 @@ const EducationalPrograms = () => {
           {programs.map((program, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full"
+              className="bg-gradient-to-t from-[#0E0E10] to-[#17171A] border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full"
             >
               {/* Icon */}
               <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
@@ -63,7 +63,7 @@ const EducationalPrograms = () => {
               </div>
               
               {/* Title */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-white mb-2">
                 {program.title}
               </h3>
               

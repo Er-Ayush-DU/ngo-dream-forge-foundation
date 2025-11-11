@@ -18,7 +18,7 @@ const Navbar = ({ session }) => {
     { name: 'Programs', scroll: 'programs-section' },
     { name: 'Publications', scroll: 'publications-section' },
     { name: 'Impact', scroll: 'impact-section' },
-    { name: 'Exams', href: 'https://ez-vfilms.vercel.app/' },
+    { name: 'Exams', href: 'http://dtbe.in', external: true },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -42,6 +42,10 @@ const Navbar = ({ session }) => {
   const handleNavClick = (item) => {
     if (item.scroll) {
       scrollToSection(item.scroll);
+    } else if (item.external) {
+      // NEW TAB MEIN KHOLO
+      window.open(item.href, '_blank', 'noopener,noreferrer');
+      closeMobileMenu();
     } else {
       router.push(item.href);
       closeMobileMenu();
@@ -54,7 +58,7 @@ const Navbar = ({ session }) => {
   };
 
   return (
-    <nav className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50">
+    <nav className="bg-[#171719] shadow-lg border-b border-gray-900 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3 lg:py-4">
           {/* Logo */}
@@ -66,7 +70,7 @@ const Navbar = ({ session }) => {
             <div className="w-9 h-9 lg:w-10 lg:h-10 bg-blue-600 rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm lg:text-lg">DF</span>
             </div>
-            <Link href="/" className="text-lg lg:text-xl font-bold text-gray-900 hidden sm:block">
+            <Link href="/" className="text-lg lg:text-xl font-bold text-white hidden sm:block">
               Dream Forge Foundation
             </Link>
           </motion.div>
@@ -79,6 +83,14 @@ const Navbar = ({ session }) => {
                   <button
                     onClick={() => scrollToSection(item.scroll)}
                     className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition"
+                  >
+                    {item.name}
+                  </button>
+                ) : item.external ? (
+                  // NEW TAB LINK
+                  <button
+                    onClick={() => window.open(item.href, '_blank', 'noopener,noreferrer')}
+                    className="text-gray-300 hover:text-blue-400 px-3 py-2 text-sm font-medium transition cursor-pointer"
                   >
                     {item.name}
                   </button>
@@ -133,6 +145,16 @@ const Navbar = ({ session }) => {
                   <button
                     onClick={() => scrollToSection(item.scroll)}
                     className="block w-full text-left px-3 py-3 text-gray-700 hover:bg-gray-50 rounded-lg"
+                  >
+                    {item.name}
+                  </button>
+                ) : item.external ? (
+                  <button
+                    onClick={() => {
+                      window.open(item.href, '_blank', 'noopener,noreferrer');
+                      closeMobileMenu();
+                    }}
+                    className="block w-full text-left px-3 py-3 text-gray-300 hover:bg-gray-800 rounded-lg"
                   >
                     {item.name}
                   </button>

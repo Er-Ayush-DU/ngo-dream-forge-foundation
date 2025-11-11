@@ -1,10 +1,10 @@
 export default function GoalsMission() {
   return (
-    <section className="bg-white py-16 px-6">
+    <section className="bg-[#171719] py-16 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Title */}
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-purple-700 mb-4">
-          Simplify Your Society Life with Trusted Security and Reliable Services
+        <h2 className="text-3xl sm:text-4xl font-bold text-center text-white mb-4">
+          Simplify Your Society Life <span className="text-[#194BFD]">with Trusted Security and Reliable Services</span>
         </h2>
 
         {/* Goals Section */}
@@ -20,21 +20,21 @@ export default function GoalsMission() {
 
           {/* Right - Goals Content */}
           <div>
-            <h3 className="text-2xl font-semibold text-purple-700 mb-4 text-center lg:text-left">
+            <h3 className="text-2xl font-semibold text-white mb-4 text-center lg:text-left">
               Our Goals
             </h3>
-            <ul className="space-y-4 text-gray-700 leading-relaxed list-decimal list-inside">
+            <ul className="space-y-4 text-[#e6e6e62c] leading-relaxed list-decimal list-inside">
               <li>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad provident et natus quasi aliquid quia quisquam cupiditate totam.
               </li>
               <li>
-               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo obcaecati aspernatur similique, facilis omnis molestiae accusamus minima voluptatum odit mollitia!
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo obcaecati aspernatur similique, facilis omnis molestiae accusamus minima voluptatum odit mollitia!
               </li>
               <li>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam, deserunt.
               </li>
               <li>
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi molestias id, iusto voluptas omnis fuga quasi?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi molestias id, iusto voluptas omnis fuga quasi?
               </li>
               <li>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum, non?
@@ -47,15 +47,15 @@ export default function GoalsMission() {
         <div className="grid lg:grid-cols-2 gap-10 items-center mt-20">
           {/* Left - Mission Content */}
           <div>
-            <h3 className="text-2xl font-semibold text-purple-700 mb-4 text-center lg:text-left">
+            <h3 className="text-2xl font-semibold text-white mb-4 text-center lg:text-left">
               Our Mission
             </h3>
-            <ul className="space-y-4 text-gray-700 leading-relaxed list-decimal list-inside">
+            <ul className="space-y-4 text-[#e6e6e62c] leading-relaxed list-decimal list-inside">
               <li>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas veritatis porro incidunt exercitationem veniam ex vitae animi dolorem quisquam quae.
               </li>
               <li>
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis autem, ea illum quisquam incidunt libero explicabo suscipit vel soluta quae?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis autem, ea illum quisquam incidunt libero explicabo suscipit vel soluta quae?
               </li>
               <li>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis temporibus placeat eaque tenetur corporis asperiores accusantium aut voluptatibus minima rerum?

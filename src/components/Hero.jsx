@@ -3,16 +3,16 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-r from-purple-50 via-white to-blue-50 py-16">
+    <section className=" bg-[#171719] py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
 
         {/* Left Content */}
         <div className="lg:w-1/2 text-center lg:text-left">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-purple-700 mb-6">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#194BFD] mb-6">
             Connecting Helpers, Protecting Homes
           </h1>
 
-          <p className="text-gray-800 leading-relaxed text-justify mb-8">
+          <p className="text-[#e6e6e62c] leading-relaxed text-justify mb-8">
             <strong>SAMIP:</strong> The Integrated Solution — At the heart of LUP's operations is
             SAMIP (Society All-in-one Management Integrated Platform), an innovative
             software platform designed to streamline various services and manage community

@@ -106,12 +106,12 @@ const EducationalPublications = () => {
   };
 
   return (
-    <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#171719] py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            Educational Publications
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            Educational <span className='text-[#194BFD]'>Publications</span>
           </h2>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
             Discover our collection of educational magazines, books, and articles to
@@ -126,8 +126,8 @@ const EducationalPublications = () => {
               key={tab.id}
               onClick={() => handleTabClick(tab.id)}
               className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer ${tab.active
-                  ? 'bg-indigo-600 text-white shadow-lg transform scale-105'
-                  : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-100'
+                ? 'bg-indigo-600 text-white shadow-lg transform scale-105'
+                : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-100'
                 }`}
               aria-pressed={tab.active}
               aria-label={`Filter by ${tab.label.toLowerCase()}`}
@@ -149,7 +149,7 @@ const EducationalPublications = () => {
             {filteredPublications.map((pub) => (
               <div
                 key={pub.id}
-                className={`relative bg-white border rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden ${pub.bgColor} ${pub.borderColor}`}
+                className={`relative bg-gradient-to-r from-[#0E0E10] to-[#17171A] rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden ${pub.bgColor} ${pub.borderColor}`}
               >
                 {/* Publication Type Badge */}
                 <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 ${pub.typeColor}`}>
@@ -164,7 +164,7 @@ const EducationalPublications = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
+                <h3 className="text-xl font-semibold text-white mb-2 line-clamp-2">
                   {pub.title}
                 </h3>
 

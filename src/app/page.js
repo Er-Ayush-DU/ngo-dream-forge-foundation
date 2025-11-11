@@ -43,7 +43,7 @@ export default function Home() {
       </div>
 
       {/* ADMIN NAHI → ADMIN LOGIN BUTTON */}
-      {session?.user?.role !== 'ADMIN' && !session && (
+      {/* {session?.user?.role !== 'ADMIN' && !session && (
         <section className="py-20 bg-gradient-to-r from-violet-600 to-indigo-600">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-6">Admin Access</h2>
@@ -55,7 +55,7 @@ export default function Home() {
             </a>
           </div>
         </section>
-      )}
+      )} */}
     </>
   );
 }
