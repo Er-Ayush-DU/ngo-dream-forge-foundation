@@ -5,42 +5,53 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useSession, signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 
-const Navbar = () => {
+const Navbar = ({ session }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
-  const { data: session, status } = useSession(); // ← Auth status
 
+  // ADMIN LINK HATA DIYA
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Programs', href: '/programs' },
-    { name: 'Publications', href: '/publications' },
-    { name: 'Impact', href: '/impact' },
-    { name: 'Exams', href: '/exams' },
+    { name: 'Programs', scroll: 'programs-section' },
+    { name: 'Publications', scroll: 'publications-section' },
+    { name: 'Impact', scroll: 'impact-section' },
+    { name: 'Exams', href: 'https://ez-vfilms.vercel.app/' },
     { name: 'Contact', href: '/contact' },
-    // Admin link — hidden in UI for non-admins
-    { name: 'Admin', href: '/admin', adminOnly: true }
   ];
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  const handleNavClick = (href) => {
-    router.push(href);
-    closeMobileMenu();
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      closeMobileMenu();
+    } else {
+      router.push('/');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
+  };
+
+  const handleNavClick = (item) => {
+    if (item.scroll) {
+      scrollToSection(item.scroll);
+    } else {
+      router.push(item.href);
+      closeMobileMenu();
+    }
   };
 
   const handleLogout = () => {
-    signOut({ callbackUrl: '/register' });
+    signOut({ callbackUrl: '/' });
     closeMobileMenu();
   };
-
-  // Filter admin link for non-admins
-  const visibleNav = navigation.filter(item =>
-    !item.adminOnly || session?.user?.role === 'ADMIN'
-  );
 
   return (
     <nav className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50">
@@ -50,7 +61,7 @@ const Navbar = () => {
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-3 flex-shrink-0 cursor-pointer"
-            onClick={() => handleNavClick('/')}
+            onClick={() => handleNavClick({ href: '/' })}
           >
             <div className="w-9 h-9 lg:w-10 lg:h-10 bg-blue-600 rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm lg:text-lg">DF</span>
@@ -60,139 +71,98 @@ const Navbar = () => {
             </Link>
           </motion.div>
 
-          {/* Desktop: Navigation + Auth */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center space-x-1">
-            {/* Main Links */}
-            <div className="flex items-center space-x-1">
-              {visibleNav.map((item) => (
-                <motion.div
-                  key={item.name}
-                  whileHover={{ y: -1 }}
-                  className="relative group"
-                  onClick={() => handleNavClick(item.href)}
-                >
-                  <Link
-                    href={item.href}
-                    className="text-gray-600 hover:text-blue-600 px-2 lg:px-3 py-2 text-sm font-medium transition-colors duration-200 whitespace-nowrap"
+            {navigation.map((item) => (
+              <motion.div key={item.name} whileHover={{ y: -1 }}>
+                {item.scroll ? (
+                  <button
+                    onClick={() => scrollToSection(item.scroll)}
+                    className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition"
                   >
                     {item.name}
-                    {item.adminOnly && (
-                      <span className="ml-1 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">
-                        Admin
-                      </span>
-                    )}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition"
+                  >
+                    {item.name}
                   </Link>
-                </motion.div>
-              ))}
-            </div>
+                )}
+              </motion.div>
+            ))}
 
-            {/* Auth Button */}
-            <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
-              {status === 'authenticated' ? (
+            {/* Auth */}
+            <div className="ml-4 pl-4 border-l border-gray-200">
+              {session ? (
                 <motion.button
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   onClick={handleLogout}
-                  className="px-4 py-2 text-sm font-medium bg-red-600 text-white hover:bg-red-700 rounded-md shadow-sm transition-all duration-200"
+                  className="px-4 py-2 bg-red-600 text-white rounded-md text-sm font-medium"
                 >
                   Logout
                 </motion.button>
               ) : (
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleNavClick('/register')}
+                <Link
+                  href="/admin/login"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium"
                 >
-                  <Link
-                    href="/register"
-                    className="px-4 py-2 text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 rounded-md shadow-sm transition-all duration-200"
-                  >
-                    Register
-                  </Link>
-                </motion.div>
+                  Admin Login
+                </Link>
               )}
             </div>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <div className="lg:hidden flex items-center">
-            <motion.button
-              onClick={toggleMobileMenu}
-              className="text-gray-600 hover:text-gray-900 p-2"
-              whileTap={{ scale: 0.9 }}
-              aria-label="Toggle menu"
-            >
+          {/* Mobile Toggle */}
+          <div className="lg:hidden">
+            <button onClick={toggleMobileMenu} className="p-2">
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.button>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.2 }}
-          className="lg:hidden bg-white border-t border-gray-200"
-        >
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="lg:hidden bg-white border-t">
           <div className="px-4 py-4 space-y-2">
-            {/* Mobile Links */}
-            <div className="space-y-1">
-              {visibleNav.map((item) => (
-                <motion.div
-                  key={item.name}
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.2 }}
-                  onClick={() => handleNavClick(item.href)}
-                >
+            {navigation.map((item) => (
+              <div key={item.name}>
+                {item.scroll ? (
+                  <button
+                    onClick={() => scrollToSection(item.scroll)}
+                    className="block w-full text-left px-3 py-3 text-gray-700 hover:bg-gray-50 rounded-lg"
+                  >
+                    {item.name}
+                  </button>
+                ) : (
                   <Link
                     href={item.href}
                     onClick={closeMobileMenu}
-                    className="block px-3 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg text-base font-medium transition-colors duration-200 flex items-center"
+                    className="block px-3 py-3 text-gray-700 hover:bg-gray-50 rounded-lg"
                   >
                     {item.name}
-                    {item.adminOnly && (
-                      <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">
-                        Admin
-                      </span>
-                    )}
                   </Link>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Mobile Auth */}
-            <div className="pt-4 mt-4 border-t border-gray-200">
-              {status === 'authenticated' ? (
-                <motion.button
-                  whileTap={{ scale: 0.98 }}
+                )}
+              </div>
+            ))}
+            <div className="pt-4 border-t">
+              {session ? (
+                <button
                   onClick={handleLogout}
-                  className="block w-full text-left px-4 py-3 rounded-lg font-medium bg-red-600 text-white hover:bg-red-700 shadow-sm transition-all duration-200"
+                  className="w-full text-left px-4 py-3 bg-red-600 text-white rounded-lg"
                 >
                   Logout
-                </motion.button>
+                </button>
               ) : (
-                <motion.div
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.2 }}
-                  onClick={() => handleNavClick('/register')}
+                <Link
+                  href="/admin/login"
+                  onClick={closeMobileMenu}
+                  className="block w-full text-left px-4 py-3 bg-blue-600 text-white rounded-lg"
                 >
-                  <Link
-                    href="/register"
-                    onClick={closeMobileMenu}
-                    className="block w-full text-left px-4 py-3 rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-700 shadow-sm transition-all duration-200"
-                  >
-                    Register
-                  </Link>
-                </motion.div>
+                  Admin Login
+                </Link>
               )}
             </div>
           </div>
