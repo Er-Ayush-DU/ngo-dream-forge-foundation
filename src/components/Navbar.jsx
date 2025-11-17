@@ -1,6 +1,6 @@
 // components/Navbar.jsx
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';  // ← useRef add kiya
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -9,18 +9,45 @@ import { signOut } from 'next-auth/react';
 
 const Navbar = ({ session }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
+  const mobileMenuRef = useRef(null); // ← YE NAYA ADD KIYA
 
-  // ADMIN LINK HATA DIYA
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
+    { name: 'About', scroll: 'about-section' },
     { name: 'Programs', scroll: 'programs-section' },
     { name: 'Publications', scroll: 'publications-section' },
     { name: 'Impact', scroll: 'impact-section' },
     { name: 'Exams', href: 'http://dtbe.in', external: true },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', scroll: 'contact-section' },
   ];
+
+  // SCROLL DETECTION
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > window.innerHeight * 0.5);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // OUTSIDE CLICK → MENU BAND HO JAYEGA
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -33,22 +60,8 @@ const Navbar = ({ session }) => {
     } else {
       router.push('/');
       setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
       }, 500);
-    }
-  };
-
-  const handleNavClick = (item) => {
-    if (item.scroll) {
-      scrollToSection(item.scroll);
-    } else if (item.external) {
-      // NEW TAB MEIN KHOLO
-      window.open(item.href, '_blank', 'noopener,noreferrer');
-      closeMobileMenu();
-    } else {
-      router.push(item.href);
-      closeMobileMenu();
     }
   };
 
@@ -58,139 +71,118 @@ const Navbar = ({ session }) => {
   };
 
   return (
-    <nav className="bg-[#171719] shadow-lg border-b border-gray-900 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-3 lg:py-4">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-3 flex-shrink-0 cursor-pointer"
-            onClick={() => handleNavClick({ href: '/' })}
-          >
-            <div className="w-9 h-9 lg:w-10 lg:h-10 bg-blue-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm lg:text-lg">DF</span>
-            </div>
-            <Link href="/" className="text-lg lg:text-xl font-bold text-white hidden sm:block">
-              Dream Forge Foundation
-            </Link>
-          </motion.div>
-
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navigation.map((item) => (
-              <motion.div key={item.name} whileHover={{ y: -1 }}>
-                {item.scroll ? (
-                  <button
-                    onClick={() => scrollToSection(item.scroll)}
-                    className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition"
-                  >
-                    {item.name}
-                  </button>
-                ) : item.external ? (
-                  // NEW TAB LINK
-                  <button
-                    onClick={() => window.open(item.href, '_blank', 'noopener,noreferrer')}
-                    className="text-gray-300 hover:text-blue-400 px-3 py-2 text-sm font-medium transition cursor-pointer"
-                  >
-                    {item.name}
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition"
-                  >
-                    {item.name}
-                  </Link>
-                )}
-              </motion.div>
-            ))}
-
-            {/* Auth */}
-            <div className="ml-4 pl-4 border-l border-gray-200">
-              {session ? (
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  onClick={handleLogout}
-                  className="px-4 py-2 bg-red-600 text-white rounded-md text-sm font-medium"
-                >
-                  Logout
-                </motion.button>
-              ) : (
-                <Link
-                  href="/admin/login"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium"
-                >
-                  Admin Login
-                </Link>
-              )}
-            </div>
-          </div>
-
-          {/* Mobile Toggle */}
-          <div className="lg:hidden">
-            <button onClick={toggleMobileMenu} className="p-2">
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+    <>
+      {/* HERO IMAGE */}
+      <div className="relative h-screen w-full overflow-hidden">
+        <img
+          src="/hero-image.jpg"
+          alt="Dream Forge Foundation"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <div className="absolute bottom-20 left-0 right-0 text-center text-white px-6">
+          <h1 className="text-5xl md:text-7xl font-bold mb-4">Dream Forge Foundation</h1>
+          <p className="text-xl md:text-2xl">Shaping Futures, Building Dreams</p>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="lg:hidden bg-white border-t">
-          <div className="px-4 py-4 space-y-2">
-            {navigation.map((item) => (
-              <div key={item.name}>
-                {item.scroll ? (
-                  <button
-                    onClick={() => scrollToSection(item.scroll)}
-                    className="block w-full text-left px-3 py-3 text-gray-700 hover:bg-gray-50 rounded-lg"
-                  >
-                    {item.name}
-                  </button>
-                ) : item.external ? (
-                  <button
-                    onClick={() => {
-                      window.open(item.href, '_blank', 'noopener,noreferrer');
-                      closeMobileMenu();
-                    }}
-                    className="block w-full text-left px-3 py-3 text-gray-300 hover:bg-gray-800 rounded-lg"
-                  >
-                    {item.name}
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    onClick={closeMobileMenu}
-                    className="block px-3 py-3 text-gray-700 hover:bg-gray-50 rounded-lg"
-                  >
-                    {item.name}
-                  </Link>
-                )}
+      {/* NAVBAR */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white shadow-lg border-b border-gray-200' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+
+            {/* Logo */}
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-3 cursor-pointer" onClick={() => router.push('/')}>
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${isScrolled ? 'bg-blue-600' : 'bg-blue-500'}`}>
+                DF
               </div>
-            ))}
-            <div className="pt-4 border-t">
+              <span className={`font-bold text-lg ${isScrolled ? 'text-gray-900' : 'text-white'} hidden sm:block`}>
+                Dream Forge Foundation
+              </span>
+            </motion.div>
+
+            {/* Desktop Nav */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {navigation.map((item) => (
+                <motion.div key={item.name} whileHover={{ y: -2 }}>
+                  {item.scroll ? (
+                    <button onClick={() => scrollToSection(item.scroll)} className={`font-medium transition ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-300'}`}>
+                      {item.name}
+                    </button>
+                  ) : item.external ? (
+                    <button onClick={() => window.open(item.href, '_blank', 'noopener,noreferrer')} className={`font-medium transition ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-300'}`}>
+                      {item.name}
+                    </button>
+                  ) : (
+                    <Link href={item.href} className={`font-medium transition ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-300'}`}>
+                      {item.name}
+                    </Link>
+                  )}
+                </motion.div>
+              ))}
+
               {session ? (
-                <button
-                  onClick={handleLogout}
-                  className="w-full text-left px-4 py-3 bg-red-600 text-white rounded-lg"
-                >
+                <motion.button whileHover={{ scale: 1.05 }} onClick={handleLogout} className="px-5 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700">
                   Logout
-                </button>
+                </motion.button>
               ) : (
-                <Link
-                  href="/admin/login"
-                  onClick={closeMobileMenu}
-                  className="block w-full text-left px-4 py-3 bg-blue-600 text-white rounded-lg"
-                >
+                <Link href="/admin/login" className="px-5 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition">
                   Admin Login
                 </Link>
               )}
             </div>
+
+            {/* Mobile Toggle */}
+            <button onClick={toggleMobileMenu} className={`lg:hidden p-2 ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
-        </motion.div>
-      )}
-    </nav>
+        </div>
+
+        {/* MOBILE MENU — WITH OUTSIDE CLICK CLOSE */}
+        {isMobileMenuOpen && (
+          <motion.div
+            ref={mobileMenuRef}  // ← YE REF LAGA DIYA
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="lg:hidden fixed inset-x-0 top-16 bg-[#171719] border-t border-gray-800 z-40"
+          >
+            <div className="px-6 py-8 space-y-4">
+              {navigation.map((item) => (
+                <div key={item.name}>
+                  {item.scroll ? (
+                    <button onClick={() => scrollToSection(item.scroll)} className="block w-full text-left py-3 text-white text-lg font-medium hover:text-blue-400 transition">
+                      {item.name}
+                    </button>
+                  ) : item.external ? (
+                    <button onClick={() => { window.open(item.href, '_blank', 'noopener,noreferrer'); closeMobileMenu(); }} className="block w-full text-left py-3 text-white text-lg font-medium hover:text-blue-400 transition">
+                      {item.name}
+                    </button>
+                  ) : (
+                    <Link href={item.href} onClick={closeMobileMenu} className="block py-3 text-white text-lg font-medium hover:text-blue-400 transition">
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
+              ))}
+
+              <div className="pt-6 border-t border-gray-700">
+                {session ? (
+                  <button onClick={handleLogout} className="w-full py-4 bg-red-600 text-white rounded-lg font-bold text-lg hover:bg-red-700 transition">
+                    Logout
+                  </button>
+                ) : (
+                  <Link href="/admin/login" onClick={closeMobileMenu} className="block w-full py-4 bg-blue-600 text-white rounded-lg font-bold text-lg text-center hover:bg-blue-700 transition">
+                    Admin Login
+                  </Link>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </nav>
+    </>
   );
 };
 

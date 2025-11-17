@@ -11,7 +11,7 @@ const sections = [
     bg: "bg-red-50",
     border: "border-red-200",
     text: "Our mission is to empower youth with quality education, mentorship, and opportunities while promoting fairness, transparency, and equal access in academic and professional fields.",
-    link: "/about/mission",
+    link: "/mission",
   },
   {
     title: "OUR VISION",
@@ -21,7 +21,7 @@ const sections = [
     bg: "bg-blue-50",
     border: "border-blue-200",
     text: "To create an India where every student, regardless of background or geography, has equal access to knowledge, opportunities, and platforms to rise and lead.",
-    link: "/about/vision",
+    link: "/vision",
   },
   {
     title: "OUR VALUES",
@@ -31,7 +31,7 @@ const sections = [
     bg: "bg-orange-50",
     border: "border-orange-200",
     text: "Purity, Transparency, Sustainability, and Care — we handpick every ingredient with love and responsibility toward people and planet.",
-    link: "/about/values",
+    link: "/values",
   },
 ];
 

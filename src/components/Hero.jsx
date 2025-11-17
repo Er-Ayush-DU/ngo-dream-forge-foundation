@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
 
         {/* Left Content */}
-        <div className="lg:w-1/2 text-center lg:text-left">
+        {/* <div className="lg:w-1/2 text-center lg:text-left">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-[#194BFD] mb-6">
             Connecting Helpers, Protecting Homes
           </h1>
@@ -22,25 +22,25 @@ export default function Hero() {
             Management System, and SOS Alerts for emergencies. QR-based systems enable
             attendance tracking and transparency through smartphone apps, ensuring ease of
             access to information.
-          </p>
+          </p> */}
 
           {/* Learn More Button */}
-          <Link
+          {/* <Link
             href="/about"
             className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
           >
             Learn More
           </Link>
-        </div>
+        </div> */}
 
-        {/* Right Image */}
-        <div className="lg:w-1/2 flex justify-center">
+       
+        {/* <div className="relative w-full h-screen overflow-hidden">
           <img
-            src="/hero_image.png" // make sure this file is inside /public folder
-            alt="Helping Hands Illustration"
-            className="w-full max-w-md lg:max-w-lg object-contain"
+            src="/hero-image.jpg" // make sure this file is inside /public folder
+            alt="Hero Image"
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
-        </div>
+        </div> */}
 
       </div>
     </section>

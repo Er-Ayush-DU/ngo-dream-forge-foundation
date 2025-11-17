@@ -3,12 +3,12 @@
 import { useSession } from 'next-auth/react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import GoalsMission from '@/components/GoalsMission';
 import EducationalPrograms from '@/components/EducationalPrograms';
 import EducationalPublications from '@/components/EducationalPublications';
 import OurImpact from '@/components/OurImpact';
 import About from '@/components/About';
 import VisionMissionValues from '@/components/VisionMissionValues';
+import ContactUs from '@/components/ContactUs';
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -28,11 +28,18 @@ export default function Home() {
       {session?.user?.role !== 'ADMIN' && <Navbar session={session} />}
 
       <div>
-        <Hero />
-        <About /> {/* ABOUT SECTION ADDED */}
-        {/* <GoalsMission /> */}
-        <VisionMissionValues/>
 
+        <div>
+          <Hero />
+        </div>
+
+        <div id="about-section">
+          <About />
+        </div>
+
+        <div>
+          <VisionMissionValues />
+        </div>
 
         <div id="programs-section">
           <EducationalPrograms />
@@ -45,6 +52,11 @@ export default function Home() {
         <div id="impact-section">
           <OurImpact />
         </div>
+
+        <div id="contact-section">
+          <ContactUs />
+        </div>
+
       </div>
 
       {/* ADMIN NAHI → ADMIN LOGIN BUTTON */}
