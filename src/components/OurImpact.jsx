@@ -248,7 +248,7 @@ const OurImpact = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 tracking-tight"
+            className="text-4xl md:text-5xl sm:text-4xl font-bold text-white mb-4 tracking-tight"
             style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}
           >
             Our Impact

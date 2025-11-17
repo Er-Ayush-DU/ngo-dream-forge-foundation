@@ -42,7 +42,7 @@ export default function ContactUs() {
     <section id="contact" className="py-20 bg-[#0f172a] text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tight">Contact Us</h2>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Contact <span className='text-[#196bdf]'>Us</span></h2>
           <p className="mt-6 text-lg text-gray-400 max-w-2xl mx-auto">
             Please feel free to contact us and we will get back to you as soon as we can.
           </p>

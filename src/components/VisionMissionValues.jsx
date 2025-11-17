@@ -39,7 +39,7 @@ export default function VisionMissionValues() {
   return (
 
     <section className="py-20 bg-[#171719]">
-      <h1  className='text-center font-bold text-4xl'>Mission & <span className='text-[#196bdf]'>Objectives</span></h1>
+      <h1 className='text-4xl md:text-5xl text-center font-bold'>Mission & <span className='text-[#196bdf]'>Objectives</span></h1>
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid md:grid-cols-3 gap-10">
           {sections.map((item, index) => (
