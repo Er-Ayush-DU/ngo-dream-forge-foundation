@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 // IMAGE KO DYNAMIC IMPORT KARO → NO SSR
 const BackgroundImage = dynamic(() => import('@/components/BackgroundImage'), {
@@ -28,7 +29,7 @@ export default function AdminLogin() {
       redirect: false,
       email,
       password,
-      isAdmin: 'on',
+      // isAdmin: 'on',
     });
 
     if (res?.error) {
@@ -84,15 +85,17 @@ export default function AdminLogin() {
             />
             <button
               type="submit"
-              className="w-full py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all"
+              className="w-full py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all cursor-pointer"
             >
               ACCESS GRANTED
             </button>
           </form>
-
-          <p className="text-center text-cyan-300/70 text-sm mt-6">
+          <Link href="/admin/forgot-password" className='text-blue-600'>
+            <p className='mt-6 text-center'>Forgot Password</p>
+          </Link>
+          {/* <p className="text-center text-cyan-300/70 text-sm mt-6">
             Secure Admin Access Only
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

@@ -7,6 +7,8 @@ import GoalsMission from '@/components/GoalsMission';
 import EducationalPrograms from '@/components/EducationalPrograms';
 import EducationalPublications from '@/components/EducationalPublications';
 import OurImpact from '@/components/OurImpact';
+import About from '@/components/About';
+import VisionMissionValues from '@/components/VisionMissionValues';
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -27,7 +29,10 @@ export default function Home() {
 
       <div>
         <Hero />
-        <GoalsMission />
+        <About /> {/* ABOUT SECTION ADDED */}
+        {/* <GoalsMission /> */}
+        <VisionMissionValues/>
+
 
         <div id="programs-section">
           <EducationalPrograms />

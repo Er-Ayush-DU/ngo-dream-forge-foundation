@@ -7,6 +7,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true, select: false },
   fullName: { type: String, required: true },
   role: { type: String, enum: ['ADMIN'], default: 'ADMIN' }, // Sirf ADMIN
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date },
 }, { timestamps: true });
 
 userSchema.pre('save', async function (next) {

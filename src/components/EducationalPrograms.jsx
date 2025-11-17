@@ -41,11 +41,11 @@ const EducationalPrograms = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-4xl font-bold text-white sm:text-4xl">
             Our Educational <span className='text-[#194BFD]'>Programs</span>
           </h2>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive programs designed to address educational gaps and 
+            Comprehensive programs designed to address educational gaps and
             create lasting impact
           </p>
         </div>
@@ -61,17 +61,17 @@ const EducationalPrograms = () => {
               <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
                 <span className="text-2xl">{program.icon}</span>
               </div>
-              
+
               {/* Title */}
               <h3 className="text-xl font-semibold text-white mb-2">
                 {program.title}
               </h3>
-              
+
               {/* Subtitle */}
               <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                 {program.subtitle}
               </p>
-              
+
               {/* Features */}
               <ul className="space-y-2 flex-1">
                 {program.features.map((feature, featureIndex) => (
