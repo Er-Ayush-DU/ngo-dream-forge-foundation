@@ -59,7 +59,7 @@ export default function VisionMissionValues() {
                     <h3 className={`text-2xl font-bold mt-2 ${item.color}`}>{item.title}</h3>
                   </div>
 
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-400 leading-relaxed">
                     {item.text}
                   </p>
 

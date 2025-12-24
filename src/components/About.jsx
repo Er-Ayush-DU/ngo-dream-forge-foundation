@@ -16,7 +16,7 @@ export default function AboutSection() {
         </div>
 
         {/* Description */}
-        <p className="text-lg md:text-xl text-[#e6e6e62c] leading-relaxed mb-10 font-medium">
+        <p className="text-lg md:text-xl text-gray-400 leading-relaxed mb-10 font-medium">
           Dream Forge Foundation (DFF) is a registered non-profit organization committed to transforming
           education and empowering youth across India. Established with a belief that “talent is equal
           everywhere, but opportunities are not,”DFF strives to bridge the gap between Tier-1 and Tier-3

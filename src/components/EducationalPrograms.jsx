@@ -44,7 +44,7 @@ const EducationalPrograms = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white sm:text-4xl">
             Our Educational <span className='text-[#194BFD]'>Programs</span>
           </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="mt-4 text-xl text-gray-400 max-w-3xl mx-auto">
             Comprehensive programs designed to address educational gaps and
             create lasting impact
           </p>
@@ -68,7 +68,7 @@ const EducationalPrograms = () => {
               </h3>
 
               {/* Subtitle */}
-              <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+              <p className="text-gray-400 mb-6 text-sm leading-relaxed">
                 {program.subtitle}
               </p>
 
@@ -89,7 +89,7 @@ const EducationalPrograms = () => {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    <span className="text-gray-700 text-sm">{feature}</span>
+                    <span className="text-gray-400 text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>

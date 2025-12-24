@@ -50,9 +50,9 @@ export default function AboutPage() {
                 About <span className='text-[#194bdf]'>Us</span>
               </h1>
 
-              <div className="text-lg text-[#e6e6e62c] space-y-5 leading-relaxed">
+              <div className="text-lg text-gray-400 space-y-5 leading-relaxed">
                 <p>
-                  <strong>Dream Forge Foundation (DFF)</strong>is a registered non-profit organization committed to transforming
+                  <strong>Dream Forge Foundation (DFF) </strong>is a registered non-profit organization committed to transforming
                   education and empowering youth across India. Established with a belief that "talent is equal
                   everywhere, but opportunities are not," DFF strives to bridge the gap between Tier-1 and Tier-3
                   India.

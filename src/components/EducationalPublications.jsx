@@ -13,7 +13,7 @@ const EducationalPublications = () => {
       type: 'Magazine',
       title: 'Future Learners',
       description: 'Innovative teaching methods and student success stories from our programs.',
-      issue: 'Issue #2 - Aug 2024',
+      issue: 'Issue 2 - Aug 2024',
       action: 'Read Online',
       actionVariant: 'primary',
       imageAlt: 'Colorful magazine cover featuring STEM education and robotics workshop with enthusiastic students',
@@ -113,7 +113,7 @@ const EducationalPublications = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white sm:text-4xl">
             Educational <span className='text-[#194BFD]'>Publications</span>
           </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="mt-4 text-xl text-gray-400 max-w-3xl mx-auto">
             Discover our collection of educational magazines, books, and articles to
             support learning
           </p>
@@ -126,8 +126,8 @@ const EducationalPublications = () => {
               key={tab.id}
               onClick={() => handleTabClick(tab.id)}
               className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer ${tab.active
-                ? 'bg-indigo-600 text-white shadow-lg transform scale-105'
-                : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-100'
+                ? 'bg-indigo-400 text-white shadow-lg transform scale-105'
+                : 'text-gray-400 hover:text-indigo-600 hover:bg-gray-100'
                 }`}
               aria-pressed={tab.active}
               aria-label={`Filter by ${tab.label.toLowerCase()}`}
@@ -138,7 +138,7 @@ const EducationalPublications = () => {
         </div>
 
         {/* Publications Count */}
-        <div className="text-center mb-6 text-gray-500">
+        <div className="text-center mb-6 text-white text-lg font-medium">
           Showing {filteredPublications.length} {activeTab === 'all' ? 'publications' : activeTab}
           {filteredPublications.length !== 1 ? 's' : ''}
         </div>
@@ -169,7 +169,7 @@ const EducationalPublications = () => {
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
+                <p className="text-gray-400 mb-4 text-sm leading-relaxed line-clamp-3">
                   {pub.description}
                 </p>
 
@@ -194,7 +194,7 @@ const EducationalPublications = () => {
           <div className="text-center py-12">
             <div className="text-gray-400 text-6xl mb-4">📚</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No publications found</h3>
-            <p className="text-gray-600">Try selecting a different category or check back later.</p>
+            <p className="text-gray-400">Try selecting a different category or check back later.</p>
           </div>
         )}
       </div>

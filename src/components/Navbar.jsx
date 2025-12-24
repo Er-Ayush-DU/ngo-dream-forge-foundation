@@ -93,9 +93,16 @@ const Navbar = ({ session }) => {
 
             {/* Logo */}
             <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-3 cursor-pointer" onClick={() => router.push('/')}>
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${isScrolled ? 'bg-blue-600' : 'bg-blue-500'}`}>
-                DF
+              <div>
+                <img
+                  src="dff_logo.jpg"
+                  alt="Dream Forge Foundation Logo"
+                  className="h-10 w-10 object-contain"
+                />
               </div>
+              {/* <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${isScrolled ? 'bg-blue-600' : 'bg-blue-500'}`}>
+                DF
+              </div> */}
               <span className={`font-bold text-lg ${isScrolled ? 'text-gray-900' : 'text-white'} hidden sm:block`}>
                 Dream Forge Foundation
               </span>
