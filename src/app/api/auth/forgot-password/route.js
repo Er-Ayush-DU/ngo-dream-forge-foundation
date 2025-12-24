@@ -36,15 +36,10 @@ export async function POST(req) {
     await user.save();
 
     // Build correct reset link for both local and production
-    const resetLink = `${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/admin/reset-password/${token}`;
-
-    // const baseUrl = process.env.NEXTAUTH_URL ||
-    //   process.env.VERCEL_URL
-    //   ? `https://${process.env.VERCEL_URL}`
-    //   : 'http://localhost:3000';
-
-    // const resetLink = `${baseUrl}/admin/reset-password/${token}`;
-
+    
+    // const resetLink = `${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/admin/reset-password/${token}`;
+    
+    const resetLink = `http://localhost:3000/admin/reset-password/${token}`;
     // Send email
     await sendResetEmail(email, resetLink);
 
