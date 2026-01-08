@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       {/* ADMIN HAI → NAVBAR HATAAO */}
-      {session?.user?.role !== 'ADMIN' && <Navbar session={session} />}
+      <Navbar />
 
       <div>
 
@@ -59,20 +59,6 @@ export default function Home() {
 
       </div>
 
-      {/* ADMIN NAHI → ADMIN LOGIN BUTTON */}
-      {/* {session?.user?.role !== 'ADMIN' && !session && (
-        <section className="py-20 bg-gradient-to-r from-violet-600 to-indigo-600">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold text-white mb-6">Admin Access</h2>
-            <a
-              href="/admin/login"
-              className="inline-block px-8 py-3 bg-white text-indigo-600 font-bold rounded-lg hover:bg-gray-100 transition"
-            >
-              Admin Login
-            </a>
-          </div>
-        </section>
-      )} */}
     </>
   );
 }

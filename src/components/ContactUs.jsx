@@ -1,7 +1,7 @@
 // components/ContactUs.jsx
 'use client';
 import React, { useState } from 'react';
-import { MapPin, Phone, Send, Twitter, Linkedin, Instagram, Globe } from 'lucide-react';
+import { MapPin, Phone, Send, Twitter, Linkedin, Instagram, Globe, Youtube } from 'lucide-react';
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -42,7 +42,7 @@ export default function ContactUs() {
     <section id="contact" className="py-20 bg-[#0f172a] text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Contact <span className='text-[#196bdf]'>Us</span></h2>
+          <h2 className="text-4xl md:text-/xl font-bold tracking-tight">Contact <span className='text-[#196bdf]'>Us</span></h2>
           <p className="mt-6 text-lg text-gray-400 max-w-2xl mx-auto">
             Please feel free to contact us and we will get back to you as soon as we can.
           </p>
@@ -90,20 +90,20 @@ export default function ContactUs() {
           <div className="space-y-12">
             <div>
               <h3 className="text-lg font-semibold mb-4 flex items-center gap-3"><MapPin size={24} /> Visit us</h3>
-              <p className="text-gray-400">265 Homebush Road<br />Strathfield South 2136</p>
+              <p className="text-gray-400">G44, Malkaganj<br />New Delhi 110007</p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-4 flex items-center gap-3"><Phone size={24} /> Talk to us</h3>
               <p className="text-gray-400">
-                +61 421 307 998<br />
-                <a href="mailto:helen@helenarvan.com" className="hover:text-white">helen@helenarvan.com</a>
+                +91-9211052177<br />
+                <a href="mailto:dreamforgef@gmail.com " className="hover:text-white">dreamforgef@gmail.com </a>
               </p>
             </div>
             <div className="flex gap-6 pt-8">
-              <a href="#" className="text-gray-400 hover:text-white"><Twitter size={28} /></a>
-              <a href="#" className="text-gray-400 hover:text-white"><Linkedin size={28} /></a>
-              <a href="#" className="text-gray-400 hover:text-white"><Instagram size={28} /></a>
-              <a href="#" className="text-gray-400 hover:text-white"><Globe size={28} /></a>
+              <a href="/" className="text-gray-400 hover:text-white"><Twitter size={28} /></a>
+              <a href="/" className="text-gray-400 hover:text-white"><Linkedin size={28} /></a>
+              <a href="https://www.instagram.com/dreamforgefoundation?igsh=eml0aHhnOTMxczcw" className="text-gray-400 hover:text-white" target='_blank'><Instagram size={28} /></a>
+              <a href="https://www.youtube.com/@dreamforgefoundation" className="text-gray-400 hover:text-white" target='_blank'><Youtube size={28} /></a>
             </div>
           </div>
         </div>

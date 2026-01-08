@@ -7,36 +7,36 @@ import Link from 'next/link';
 const Footer = () => {
   const navigation = {
     about: [
-      { name: 'About Us', href: '/about' },
-      { name: 'Our Programs', href: '/programs' },
-      { name: 'Publications', href: '/publications' },
-      { name: 'Our Impact', href: '/impact' },
+      { name: 'About Us', href: '/' },
+      { name: 'Our Programs', href: '/' },
+      { name: 'Publications', href: '/' },
+      { name: 'Our Impact', href: '/' },
     ],
     quickLinks: [
-      { name: 'Exams', href: '/exams' },
-      { name: 'Donate', href: '/donate' },
-      { name: 'Volunteer', href: '/volunteer' },
-      { name: 'Partner with Us', href: '/partners' },
-      { name: 'Careers', href: '/careers' },
+      { name: 'Exams', href: 'https://www.dtbe.in/' },
+      { name: 'Donate', href: '/' },
+      { name: 'Volunteer', href: '/' },
+      { name: 'Partner with Us', href: '/' },
+      { name: 'Careers', href: '/' },
     ],
     getInvolved: [
-      { name: 'Donate', href: '/donate' },
-      { name: 'Volunteer', href: '/volunteer' },
-      { name: 'Partner with Us', href: '/partners' },
-      { name: 'Careers', href: '/careers' },
+      { name: 'Donate', href: '/' },
+      { name: 'Volunteer', href: '/' },
+      { name: 'Partner with Us', href: '/' },
+      { name: 'Careers', href: '/' },
     ]
   };
 
   const socialMedia = [
-    { name: 'Facebook', href: '#', icon: '📘', ariaLabel: 'Facebook' },
-    { name: 'Twitter', href: '#', icon: '🐦', ariaLabel: 'Twitter' },
-    { name: 'LinkedIn', href: '#', icon: '💼', ariaLabel: 'LinkedIn' },
+    { name: 'Facebook', href: '/', icon: '📘', ariaLabel: 'Facebook' },
+    { name: 'Twitter', href: '/', icon: '🐦', ariaLabel: 'Twitter' },
+    { name: 'LinkedIn', href: '/', icon: '💼', ariaLabel: 'LinkedIn' },
   ];
 
-  const handleSocialClick = (href, ariaLabel) => {
-    // Implement social media tracking or opening in new tab
-    window.open(href, '_blank', 'noopener,noreferrer');
-  };
+  // const handleSocialClick = (href, ariaLabel) => {
+  //   // Implement social media tracking or opening in new tab
+  //   window.open(href, '_blank', 'noopener,noreferrer');
+  // };
 
   return (
     <motion.footer
@@ -72,8 +72,8 @@ const Footer = () => {
               {socialMedia.map((platform) => (
                 <motion.button
                   key={platform.name}
-                  onClick={() => handleSocialClick(platform.href, platform.ariaLabel)}
-                  className="text-gray-400 hover:text-white p-2 rounded-full hover:bg-gray-800 transition-colors duration-200"
+                  // onClick={() => handleSocialClick(platform.href, platform.ariaLabel)}
+                  className="text-gray-400 hover:text-white p-2 rounded-full hover:bg-gray-800 transition-colors duration-200 cursor-pointer"
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label={platform.ariaLabel}
@@ -129,16 +129,16 @@ const Footer = () => {
             </h4>
             <div className="space-y-3 text-center lg:text-left">
               <p className="text-gray-400 text-sm">
-                123 Education Lane, Global City, GC 23456
+                G44, Malkaganj New Delhi 110007
               </p>
               <p className="text-gray-400 text-sm">
-                <a href="mailto:info@dreamforge.org" className="hover:text-white transition-colors">
-                  info@dreamforge.org
+                <a href="mailto:dreamforgef@gmail.com" className="hover:text-white transition-colors">
+                  dreamforgef@gmail.com
                 </a>
               </p>
               <p className="text-gray-400 text-sm">
-                <a href="tel:+15523456789" className="hover:text-white transition-colors">
-                  +1 (552) 345-6789
+                <a href="tel:+919211052177" className="hover:text-white transition-colors">
+                  +91-9211052177
                 </a>
               </p>
             </div>
